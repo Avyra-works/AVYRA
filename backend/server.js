@@ -15,7 +15,7 @@ connectDB();
 
 // Middlewares
 app.use(cors({
-  origin: '*', // For development flexibility
+  origin: process.env.CLIENT_URL, // For development flexibility
 }));
 app.use(express.json());
 
