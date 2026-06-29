@@ -14,9 +14,25 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 // Middlewares
-app.use(cors({
-  origin: process.env.CLIENT_URL, // For development flexibility
-}));
+import cors from "cors";
+
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://avyra.works", // optional if you still use the Vercel URL
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 // Health Check API
