@@ -1,4 +1,6 @@
 import React from 'react';
+import { FiInstagram, FiLinkedin, FiGithub } from 'react-icons/fi';
+import { TbBrandBehance } from 'react-icons/tb';
 
 export const Footer = () => {
   const handleScrollTo = (e, id) => {
@@ -60,22 +62,44 @@ export const Footer = () => {
 
             <div className="flex flex-col gap-4">
               <span className="font-body text-xs font-bold uppercase tracking-widest text-primary">Social</span>
-              <a 
-                href="https://www.instagram.com/avyra.creations?igsh=aXB3aWk0ams1d28z&utm_source=qr" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="font-body text-xs uppercase tracking-widest text-secondary hover:text-primary transition-colors"
-              >
-                Instagram
-              </a>
-              <a 
-                href="https://github.com/abhii7554" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="font-body text-xs uppercase tracking-widest text-secondary hover:text-primary transition-colors"
-              >
-                GitHub
-              </a>
+              <div className="flex items-center gap-2 mt-1">
+                <a 
+                  href="https://www.instagram.com/avyra.creations" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-10 h-10 flex items-center justify-center text-secondary hover:text-primary transition-all duration-300 md:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 rounded-sm"
+                >
+                  <FiInstagram size={20} />
+                </a>
+                <a 
+                  href="https://www.behance.net/avyra" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Behance"
+                  className="w-10 h-10 flex items-center justify-center text-secondary hover:text-primary transition-all duration-300 md:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 rounded-sm"
+                >
+                  <TbBrandBehance size={20} />
+                </a>
+                <a 
+                  href="https://www.linkedin.com/company/135204244" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  className="w-10 h-10 flex items-center justify-center text-secondary hover:text-primary transition-all duration-300 md:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 rounded-sm"
+                >
+                  <FiLinkedin size={20} />
+                </a>
+                <a 
+                  href="https://github.com/Avyra-works" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  className="w-10 h-10 flex items-center justify-center text-secondary hover:text-primary transition-all duration-300 md:hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold focus-visible:ring-offset-2 rounded-sm"
+                >
+                  <FiGithub size={20} />
+                </a>
+              </div>
             </div>
           </div>
         </div>
