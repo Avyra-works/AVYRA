@@ -2,6 +2,8 @@ import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
 import obsidianDesktop from '../assets/obsidian_desktop.webp';
 import obsidianMobile from '../assets/obsidian_mobile.webp';
+import anjuDesktop from '../assets/anju_desktop.webp';
+import anjuMobile from '../assets/anju_mobile.webp';
 
 export const FeaturedWork = () => {
   const projects = [
@@ -25,6 +27,32 @@ export const FeaturedWork = () => {
       desktopImage: obsidianDesktop,
       mobileImage: obsidianMobile,
       url: "https://obsidian-auto-demo.vercel.app/"
+    },
+    {
+      id: "anju-house-redesign",
+      title: "Anju House Restaurant Website Redesign",
+      category: "UI/UX Redesign • Frontend Development",
+      statusBadge: "Website Redesign",
+      shortDescription: "A premium concept redesign of a Korean family restaurant website focused on improving user experience, online reservations, branding, and customer engagement.",
+      detailedDescription: "Redesigned the complete digital experience of Anju House with a modern luxury aesthetic, immersive visuals, responsive layouts, interactive reservation flow, improved navigation, optimized menu presentation, and a stronger brand identity while preserving the restaurant's Korean family atmosphere and sports-night culture.",
+      highlights: [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "React Router",
+        "Responsive Design"
+      ],
+      desktopImage: anjuDesktop,
+      mobileImage: anjuMobile,
+      primaryButton: {
+        text: "Live Demo",
+        url: "https://anju-house-redesign.vercel.app/"
+      },
+      //secondaryButton: {
+        //text: "View Case Study",
+       // url: "#"
+      //}
     }
   ];
 
@@ -115,17 +143,40 @@ export const FeaturedWork = () => {
                     </ul>
                   </div>
 
-                  {/* CTA Button */}
-                  <div className="pt-4">
-                    <a 
-                      href={project.url}
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
-                    >
-                      View Live Project
-                      <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-                    </a>
+                  {/* CTA Buttons */}
+                  <div className="flex flex-wrap gap-4 pt-4">
+                    {project.primaryButton ? (
+                      <a 
+                        href={project.primaryButton.url}
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
+                      >
+                        {project.primaryButton.text}
+                        <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    ) : (
+                      project.url && (
+                        <a 
+                          href={project.url}
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
+                        >
+                          View Live Project
+                          <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                        </a>
+                      )
+                    )}
+                    {project.secondaryButton && (
+                      <a 
+                        href={project.secondaryButton.url}
+                        className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
+                      >
+                        {project.secondaryButton.text}
+                        <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
