@@ -18,7 +18,8 @@ import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://avyra.works", // optional if you still use the Vercel URL
+  "https://avyra.works",
+  "https://www.avyra.works" // optional if you still use the Vercel URL
 ];
 
 app.use(
