@@ -17,17 +17,26 @@ connectDB();
 const allowedOrigins = [
   "http://localhost:5173",
   "https://avyra.works",
-  "https://www.avyra.works"
+  "https://www.avyra.works",
 ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
+    origin(origin, callback) {
+      // Allow requests without Origin (Postman, server-to-server)
+      if (!origin) return callback(null, true);
+
+      // Allow production domains
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
       }
+
+      // Allow all Vercel preview deployments
+      if (origin.endsWith(".vercel.app")) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
   })
