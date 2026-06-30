@@ -48,7 +48,9 @@ app.get('/api/health', (req, res) => {
     uptime: process.uptime(),
   });
 });
-
+app.get("/", (req, res) => {
+  res.send("AVYRA Backend Version 2");
+});
 // Contact Submission API
 app.post('/api/contact', async (req, res) => {
   try {
