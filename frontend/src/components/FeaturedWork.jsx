@@ -13,7 +13,7 @@ export const FeaturedWork = () => {
       category: "Web Design & Development",
       statusBadge: "Live Project",
       shortDescription: "A premium automotive detailing website designed to showcase luxury car care services through sophisticated visual design, strong typography, and a refined user experience.",
-      detailedDescription: "Obsidian Auto Spa was created as a high-end digital experience for a premium car detailing and protection studio. The project focuses on luxury branding, service presentation, customer trust, and conversion-focused design. Every section was carefully crafted to communicate professionalism, attention to detail, and premium service quality while maintaining excellent responsiveness across all devices.",
+      detailedDescription: "Obsidian Auto Spa was created as a high-end digital experience for a premium car detailing and protection studio. Every section was carefully crafted to communicate professionalism, attention to detail, and premium service quality while maintaining excellent responsiveness across all devices.",
       highlights: [
         "Premium Editorial Design",
         "Responsive Across All Devices",
@@ -119,13 +119,13 @@ export const FeaturedWork = () => {
             width: 100% !important;
             max-width: 100% !important;
             height: auto !important;
-            aspect-ratio: 16/10 !important;
+            aspect-ratio: auto !important;
           }
           #work .desktop-img {
             width: 100% !important;
             max-width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important;
+            height: auto !important;
+            object-fit: contain !important;
           }
         }
 
@@ -153,7 +153,103 @@ export const FeaturedWork = () => {
           <div className="w-1/3 h-[1px] bg-outline-variant hidden md:block"></div>
         </div>
 
-        <div className="space-y-20 md:space-y-32">
+        {/* Dedicated Mobile Layout (< 768px) */}
+        <div className="block md:hidden space-y-[64px]">
+          {projects.map((project) => (
+            <div key={project.id} className="w-full flex flex-col items-stretch project-reveal">
+              {/* Project Screenshot */}
+              <div className="w-full shadow-md rounded border border-outline-variant/40 overflow-hidden bg-surface-container-high">
+                <img 
+                  src={project.desktopImage} 
+                  alt={`${project.title} Screenshot`}
+                  loading="lazy"
+                  className="w-full h-auto block object-contain"
+                />
+              </div>
+
+              {/* Spacing: 32px */}
+              <div className="h-8"></div>
+
+              {/* Category and status badge */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="font-body text-xs font-bold uppercase tracking-widest text-accent-gold">
+                  {project.category}
+                </span>
+                <span className="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
+                <span className="inline-block bg-accent-gold/10 text-accent-gold px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider rounded-full border border-accent-gold/20">
+                  {project.statusBadge}
+                </span>
+              </div>
+
+              {/* Spacing: 16px */}
+              <div className="h-4"></div>
+
+              {/* Project Title */}
+              <h3 className="font-display text-2xl font-bold text-primary leading-tight">
+                {project.title}
+              </h3>
+
+              {/* Spacing: 20px */}
+              <div className="h-5"></div>
+
+              {/* Short Description */}
+              <p className="font-body text-base text-primary font-medium leading-relaxed italic border-l-2 border-accent-gold pl-4">
+                {project.shortDescription}
+              </p>
+
+              {/* Spacing: 24px */}
+              <div className="h-6"></div>
+
+              {/* Key Highlights */}
+              <div className="space-y-3">
+                <h4 className="font-body text-[10px] uppercase tracking-widest text-secondary font-bold">
+                  Key Highlights
+                </h4>
+                <ul className="grid grid-cols-1 gap-y-2 text-sm">
+                  {project.highlights.map((highlight, hIdx) => (
+                    <li key={hIdx} className="flex items-center gap-2 font-body text-secondary text-xs font-semibold tracking-wide">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-gold flex-shrink-0"></span>
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Spacing: 32px */}
+              <div className="h-8"></div>
+
+              {/* Primary Button */}
+              <div className="w-full">
+                {project.primaryButton ? (
+                  <a 
+                    href={project.primaryButton.url}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-4 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full"
+                  >
+                    {project.primaryButton.text}
+                    <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                  </a>
+                ) : (
+                  project.url && (
+                    <a 
+                      href={project.url}
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-4 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full"
+                    >
+                      View Live Project
+                      <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  )
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Dedicated Desktop Layout (>= 768px) */}
+        <div className="hidden md:block space-y-32">
           {projects.map((project, index) => {
             const isEven = index % 2 === 0;
             return (
@@ -164,7 +260,7 @@ export const FeaturedWork = () => {
                 {/* Image Showcase (Desktop & Mobile mockups overlapping) */}
                 <div className={`col-span-12 lg:col-span-7 relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                   {/* Desktop Mockup container */}
-                  <div className="relative aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group project-desktop-card cursor-pointer shadow-lg mb-8 lg:mb-0">
+                  <div className="relative aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group project-desktop-card cursor-pointer shadow-lg">
                     <img 
                       src={project.desktopImage} 
                       alt={`${project.title} Desktop`}
@@ -175,8 +271,8 @@ export const FeaturedWork = () => {
                   </div>
                   
                   {/* Overlapping Mobile Mockup */}
-                  <div className={`absolute bottom-[-24px] lg:bottom-[-32px] w-[130px] md:w-[170px] aspect-[9/19] bg-surface-container-high overflow-hidden border-4 border-background shadow-2xl z-10 hidden md:block ${
-                    isEven ? 'right-2 md:right-4 lg:right-[-40px]' : 'left-2 md:left-4 lg:left-[-40px]'
+                  <div className={`absolute bottom-[-32px] w-[130px] md:w-[170px] aspect-[9/19] bg-surface-container-high overflow-hidden border-4 border-background shadow-2xl z-10 hidden md:block ${
+                    isEven ? 'right-[-20px] lg:right-[-40px]' : 'left-[-20px] lg:left-[-40px]'
                   }`}>
                     <img 
                       src={project.mobileImage} 
@@ -190,11 +286,11 @@ export const FeaturedWork = () => {
                 {/* Project Details */}
                 <div className={`col-span-12 lg:col-span-5 space-y-8 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
                   {/* Category and Badge */}
-                  <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                  <div className="flex items-center gap-4">
                     <span className="font-body text-xs font-bold uppercase tracking-widest text-accent-gold">
                       {project.category}
                     </span>
-                    <span className="w-1.5 h-1.5 rounded-full bg-outline-variant hidden sm:block"></span>
+                    <span className="w-1.5 h-1.5 rounded-full bg-outline-variant"></span>
                     <span className="inline-block bg-accent-gold/10 text-accent-gold px-3 py-1 font-body text-[10px] font-bold uppercase tracking-wider rounded-full border border-accent-gold/20">
                       {project.statusBadge}
                     </span>
@@ -231,13 +327,13 @@ export const FeaturedWork = () => {
                   </div>
 
                   {/* CTA Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4 w-full">
+                  <div className="flex flex-wrap gap-4 pt-4">
                     {project.primaryButton ? (
                       <a 
                         href={project.primaryButton.url}
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="inline-flex items-center justify-center gap-2 sm:gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-4 sm:px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full sm:w-auto"
+                        className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                       >
                         {project.primaryButton.text}
                         <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
@@ -248,7 +344,7 @@ export const FeaturedWork = () => {
                           href={project.url}
                           target="_blank" 
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 sm:gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-4 sm:px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full sm:w-auto"
+                          className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                         >
                           View Live Project
                           <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
@@ -258,7 +354,7 @@ export const FeaturedWork = () => {
                     {project.secondaryButton && (
                       <a 
                         href={project.secondaryButton.url}
-                        className="inline-flex items-center justify-center gap-2 sm:gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-4 sm:px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full sm:w-auto"
+                        className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                       >
                         {project.secondaryButton.text}
                         <FiArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
@@ -276,4 +372,3 @@ export const FeaturedWork = () => {
 };
 
 export default FeaturedWork;
-
