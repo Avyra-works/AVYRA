@@ -42,8 +42,11 @@ app.options("*", cors());
 app.use(express.json());
 
 // Health Check API
-app.use('/api/health', (req, res) => {
-  res.status(200).json({ status: 'OK', uptime: process.uptime() });
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    uptime: process.uptime(),
+  });
 });
 
 // Contact Submission API
