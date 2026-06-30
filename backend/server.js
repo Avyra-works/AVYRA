@@ -13,8 +13,6 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
-// Middlewares
-import cors from "cors";
 
 const allowedOrigins = [
   "http://localhost:5173",
