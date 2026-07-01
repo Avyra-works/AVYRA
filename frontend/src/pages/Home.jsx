@@ -28,6 +28,8 @@ export const Home = ({ onOpenLeadModal }) => {
           getProjects(),
           getTestimonials()
         ]);
+        console.log("Fetched Projects:", fetchedProjects);
+        console.log("Number of Projects:", fetchedProjects.length);
         if (active) {
           setProjects(fetchedProjects);
           console.log("Projects from Sanity:", fetchedProjects);
