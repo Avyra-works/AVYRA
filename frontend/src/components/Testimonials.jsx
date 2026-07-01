@@ -1,6 +1,13 @@
 import React from 'react';
+import TestimonialCard from './TestimonialCard';
 
-export const Testimonials = () => {
+export const Testimonials = ({ testimonials = [] }) => {
+  const featuredTestimonials = React.useMemo(() => {
+    return [...testimonials]
+      .filter(t => t.featured === true)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+  }, [testimonials]);
+
   return (
     <section className="py-40 bg-surface-container-low border-y border-outline-variant transition-colors duration-300">
       <div className="max-w-container-max-width mx-auto px-6 md:px-margin-desktop text-center">
@@ -20,18 +27,10 @@ export const Testimonials = () => {
           </svg>
         </div>
 
-        <div className="max-w-4xl mx-auto space-y-12">
-          <p className="font-display text-2xl md:text-4xl font-normal text-primary italic leading-relaxed tracking-tight">
-            "Avyra didn't just design our website; they understood our soul. The level of craftsmanship and attention to detail is something we haven't found elsewhere."
-          </p>
-          <div className="flex flex-col items-center space-y-1">
-            <p className="font-body text-xs font-bold uppercase tracking-widest text-primary">
-              Eleanor Vance
-            </p>
-            <p className="font-body text-xs text-secondary">
-              Founder, Lumina Haute Couture
-            </p>
-          </div>
+        <div className="space-y-24">
+          {featuredTestimonials.map((testimonial) => (
+            <TestimonialCard key={testimonial.id} testimonial={testimonial} />
+          ))}
         </div>
       </div>
     </section>
