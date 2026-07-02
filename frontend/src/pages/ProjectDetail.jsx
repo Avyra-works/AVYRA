@@ -71,6 +71,52 @@ export const ProjectDetail = () => {
   const canonicalUrl = `https://avyra.works/project/${project.slug}`;
   const ogImageUrl = project.desktopImage || project.image || 'https://avyra.works/og-image.png';
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://avyra.works"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Projects",
+        "item": "https://avyra.works/#work"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": project.title,
+        "item": canonicalUrl
+      }
+    ]
+  };
+
+  const creativeWorkSchema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": project.title,
+    "description": project.shortDescription || project.description || seoDescription,
+    "url": canonicalUrl,
+    "image": ogImageUrl,
+    "author": {
+      "@type": "Organization",
+      "name": "AVYRA",
+      "url": "https://avyra.works"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "AVYRA"
+    },
+    "keywords": project.technologies ? project.technologies.join(", ") : "",
+    "genre": project.category,
+    "creativeWorkStatus": project.status
+  };
+
   return (
     <>
       <Helmet>
@@ -91,6 +137,14 @@ export const ProjectDetail = () => {
         <meta name="twitter:title" content={seoTitle} />
         <meta name="twitter:description" content={seoDescription} />
         <meta name="twitter:image" content={ogImageUrl} />
+
+        {/* Structured Data / JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(creativeWorkSchema)}
+        </script>
       </Helmet>
 
       <section className="py-32 md:py-48 bg-background relative overflow-hidden transition-colors duration-300">

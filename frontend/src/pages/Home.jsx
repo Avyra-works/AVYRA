@@ -46,6 +46,65 @@ export const Home = ({ onOpenLeadModal }) => {
     };
   }, []);
 
+  const orgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AVYRA",
+    "url": "https://avyra.works",
+    "logo": "https://avyra.works/favicon.png",
+    "sameAs": [
+      "https://github.com/avyra-works",
+      "https://www.behance.net/avyra-works"
+    ]
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AVYRA",
+    "url": "https://avyra.works",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://avyra.works/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "AVYRA",
+    "image": "https://avyra.works/og-image.png",
+    "@id": "https://avyra.works/#professional-service",
+    "url": "https://avyra.works",
+    "telephone": "",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "US"
+    },
+    "areaServed": "Worldwide",
+    "serviceType": [
+      "Web Design",
+      "Web Development",
+      "UI/UX Design",
+      "Branding"
+    ]
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://avyra.works"
+      }
+    ]
+  };
+
   return (
     <>
       <Helmet>
@@ -66,6 +125,20 @@ export const Home = ({ onOpenLeadModal }) => {
         <meta name="twitter:title" content="Avyra | Web Design & Development Studio" />
         <meta name="twitter:description" content="Avyra creates modern websites and digital experiences through thoughtful design, reliable development, and user-focused solutions." />
         <meta name="twitter:image" content="https://avyra.works/og-image.png" />
+
+        {/* Structured Data / JSON-LD */}
+        <script type="application/ld+json">
+          {JSON.stringify(orgSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(websiteSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(serviceSchema)}
+        </script>
+        <script type="application/ld+json">
+          {JSON.stringify(breadcrumbSchema)}
+        </script>
       </Helmet>
 
       <HeroSection onOpenLeadModal={onOpenLeadModal} />
