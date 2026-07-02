@@ -106,25 +106,37 @@ export const Header = ({ onOpenLeadModal }) => {
     }
   };
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
+
   return (
     <header className="fixed w-full top-0 left-0 z-50 bg-background/80 backdrop-blur-md border-b border-outline-variant transition-all duration-300">
       <nav className="flex justify-between items-center w-full px-6 md:px-10 lg:px-margin-desktop py-4 max-w-container-max-width mx-auto">
         <a 
           href="#" 
           onClick={(e) => handleLinkClick(e, 'hero')}
+          aria-label="AVYRA Home"
           className="font-display text-2xl font-bold tracking-tighter text-primary hover:opacity-85 transition-opacity"
         >
           AVYRA
         </a>
 
         {/* Desktop Navigation */}
-        <div className="relative hidden md:flex items-center gap-6 lg:gap-10">
+        <nav aria-label="Main Navigation" className="relative hidden md:flex items-center gap-6 lg:gap-10">
           {navItems.map((item) => (
             <a 
               key={item.id}
               href={`#${item.id}`}
               ref={(el) => (navRefs.current[item.id] = el)}
               onClick={(e) => handleLinkClick(e, item.id)}
+              aria-current={activeSection === item.id ? 'page' : undefined}
               className={`nav-link font-body text-sm uppercase tracking-widest cursor-pointer ${
                 activeSection === item.id 
                   ? 'active text-primary opacity-100' 
@@ -144,7 +156,7 @@ export const Header = ({ onOpenLeadModal }) => {
               opacity: indicatorStyle.opacity,
             }}
           />
-        </div>
+        </nav>
 
         <button 
           onClick={onOpenLeadModal}
@@ -158,6 +170,7 @@ export const Header = ({ onOpenLeadModal }) => {
           onClick={toggleMobileMenu}
           className="md:hidden p-2 text-primary focus:outline-none hover:opacity-75 transition-opacity duration-300"
           aria-label="Toggle Menu"
+          aria-expanded={mobileMenuOpen}
         >
           {mobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
@@ -165,6 +178,9 @@ export const Header = ({ onOpenLeadModal }) => {
 
       {/* Mobile Full-screen Overlay Menu */}
       <div 
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile Navigation Menu"
         className={`fixed inset-0 bg-background/98 backdrop-blur-md flex flex-col z-50 md:hidden transition-all duration-500 ease-in-out h-screen w-screen ${
           mobileMenuOpen 
             ? 'opacity-100 translate-y-0 pointer-events-auto visible' 
@@ -192,6 +208,7 @@ export const Header = ({ onOpenLeadModal }) => {
         {/* Centered navigation links with scroll support */}
         <div className="flex-1 flex flex-col justify-center items-center gap-10 py-8 px-6 overflow-y-auto">
           <nav 
+            aria-label="Mobile Navigation"
             className="flex flex-col items-center gap-8"
             onClick={(e) => e.stopPropagation()}
           >

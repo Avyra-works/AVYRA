@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiX } from 'react-icons/fi';
 import { submitLead } from '../services/api';
 
@@ -7,6 +7,58 @@ export const LeadModal = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Focus trap setup
+    const focusableElements = document.querySelectorAll(
+      '#lead-name, #lead-email, button[type="submit"], button[aria-label="Close modal"]'
+    );
+    if (focusableElements.length > 0) {
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      const handleFocusTrap = (e) => {
+        if (e.key === 'Tab') {
+          if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+              lastElement.focus();
+              e.preventDefault();
+            }
+          } else {
+            if (document.activeElement === lastElement) {
+              firstElement.focus();
+              e.preventDefault();
+            }
+          }
+        }
+      };
+
+      window.addEventListener('keydown', handleFocusTrap);
+      
+      // Focus on first input
+      setTimeout(() => {
+        firstElement.focus();
+      }, 50);
+
+      return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keydown', handleFocusTrap);
+      };
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -100,7 +152,12 @@ export const LeadModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-primary/45 backdrop-blur-sm animate-fade-in overflow-y-auto">
-      <div className="relative w-full max-w-md bg-background border border-outline-variant p-6 sm:p-8 shadow-2xl rounded-none max-h-[90vh] overflow-y-auto my-auto">
+      <div 
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        className="relative w-full max-w-md bg-background border border-outline-variant p-6 sm:p-8 shadow-2xl rounded-none max-h-[90vh] overflow-y-auto my-auto"
+      >
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 text-secondary hover:text-primary transition-colors focus:outline-none"
@@ -109,7 +166,7 @@ export const LeadModal = ({ isOpen, onClose }) => {
           <FiX size={20} />
         </button>
 
-        <h2 className="font-display text-xl font-bold uppercase tracking-wide text-primary mb-2">
+        <h2 id="modal-title" className="font-display text-xl font-bold uppercase tracking-wide text-primary mb-2">
           Start Your Project
         </h2>
         <p className="font-body text-xs text-secondary mb-6">

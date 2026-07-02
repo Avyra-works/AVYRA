@@ -234,6 +234,7 @@ export const ProjectDetail = () => {
                     href={project.liveUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label="View Live Project (opens in a new tab)"
                     className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                   >
                     View Live Project
@@ -245,6 +246,7 @@ export const ProjectDetail = () => {
                     href={project.githubUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label="GitHub Codebase (opens in a new tab)"
                     className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                   >
                     GitHub Codebase
@@ -256,6 +258,7 @@ export const ProjectDetail = () => {
                     href={project.behanceUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label="Behance Case Study (opens in a new tab)"
                     className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                   >
                     Behance Case Study
@@ -267,6 +270,7 @@ export const ProjectDetail = () => {
                     href={project.figmaUrl}
                     target="_blank" 
                     rel="noopener noreferrer"
+                    aria-label="Figma Designs (opens in a new tab)"
                     className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
                   >
                     Figma Designs

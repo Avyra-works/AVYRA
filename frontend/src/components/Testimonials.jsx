@@ -245,6 +245,7 @@ export const Testimonials = ({ testimonials = [] }) => {
                   className="relative h-2 focus:outline-none cursor-pointer"
                   style={{ width: isActive ? '24px' : '8px' }}
                   aria-label={`Go to slide ${idx + 1}`}
+                  aria-current={isActive ? "true" : "false"}
                 >
                   <motion.span
                     layout={!shouldReduceMotion}

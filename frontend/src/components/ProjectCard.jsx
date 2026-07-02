@@ -18,6 +18,8 @@ export const ProjectCard = ({ project, isMobile, index }) => {
         {/* Project Screenshot */}
         <Link 
           to={`/project/${project.slug}`}
+          tabIndex="-1"
+          aria-hidden="true"
           className="w-full block shadow-md rounded border border-outline-variant/40 overflow-hidden bg-surface-container-high"
         >
           <img 
@@ -92,6 +94,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
               href={url}
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label={`${primaryButtonText} (opens in a new tab)`}
               className="inline-flex items-center justify-center gap-2 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-4 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full"
             >
               {primaryButtonText}
@@ -103,6 +106,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
               href={project.behanceUrl}
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label="Behance Case Study (opens in a new tab)"
               className="inline-flex items-center justify-center gap-2 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-4 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group w-full"
             >
               Behance
@@ -124,6 +128,8 @@ export const ProjectCard = ({ project, isMobile, index }) => {
         {/* Desktop Mockup container */}
         <Link 
           to={`/project/${project.slug}`}
+          tabIndex="-1"
+          aria-hidden="true"
           className="relative block aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group project-desktop-card cursor-pointer shadow-lg"
         >
           <img 
@@ -209,6 +215,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
               href={url}
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label={`${primaryButtonText} (opens in a new tab)`}
               className="inline-flex items-center gap-4 bg-primary text-on-primary hover:bg-transparent hover:text-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
             >
               {primaryButtonText}
@@ -229,6 +236,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
               href={project.behanceUrl}
               target="_blank" 
               rel="noopener noreferrer"
+              aria-label="Behance Case Study (opens in a new tab)"
               className="inline-flex items-center gap-4 bg-transparent text-primary hover:bg-primary hover:text-on-primary border border-primary px-8 py-4 font-body text-xs font-bold uppercase tracking-widest transition-all duration-300 group"
             >
               Behance

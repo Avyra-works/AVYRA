@@ -19,6 +19,7 @@ export const Footer = () => {
             <a 
               href="#" 
               onClick={(e) => handleScrollTo(e, 'hero')}
+              aria-label="AVYRA Home"
               className="font-display text-2xl font-bold text-primary mb-6 block tracking-tighter"
             >
               AVYRA
@@ -28,7 +29,7 @@ export const Footer = () => {
           </div>
 
           <div className="grid grid-cols-2 gap-x-16 gap-y-10">
-            <div className="flex flex-col gap-4">
+            <nav className="flex flex-col gap-4" aria-label="Footer Navigation">
               <span className="font-body text-xs font-bold uppercase tracking-widest text-primary">Navigation</span>
               <a 
                 href="#work" 
@@ -58,7 +59,7 @@ export const Footer = () => {
               >
                 Team
               </a>
-            </div>
+            </nav>
 
             <div className="flex flex-col gap-4">
               <span className="font-body text-xs font-bold uppercase tracking-widest text-primary">Social</span>

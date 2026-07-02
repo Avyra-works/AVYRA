@@ -45,6 +45,11 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Hanken Grotesk', sans-serif;
   }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 4px;
+  }
 }
 
 /* Custom Animation Utilities */
