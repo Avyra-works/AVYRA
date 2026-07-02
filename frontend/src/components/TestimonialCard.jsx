@@ -7,7 +7,7 @@ export const TestimonialCard = ({ testimonial }) => {
 
   return (
     <motion.div 
-      className="bg-background border border-outline-variant/30 p-8 md:p-10 rounded-none flex flex-col justify-between h-full select-none text-left group"
+      className="bg-background border border-outline-variant/30 p-6 sm:p-8 md:p-10 rounded-none flex flex-col justify-between h-full select-none text-left group"
       whileHover={{ 
         y: -8, 
         boxShadow: "0 20px 40px rgba(0, 0, 0, 0.04)",

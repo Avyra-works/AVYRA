@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PhilosophySection = () => {
+export const PhilosophySection = React.memo(() => {
   const points = [
     {
       number: "01",
@@ -59,6 +59,6 @@ export const PhilosophySection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default PhilosophySection;

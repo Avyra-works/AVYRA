@@ -21,17 +21,32 @@ export const Testimonials = ({ testimonials = [] }) => {
   const M = loopItems.length; // 3 * N
 
   // 3. Responsive visible count logic
-  const [visibleCount, setVisibleCount] = useState(3);
-  const [containerWidth, setContainerWidth] = useState(0);
+  const getInitialVisibleCount = () => {
+    if (typeof window === 'undefined') return 3;
+    if (window.innerWidth >= 1024) return 3;
+    if (window.innerWidth >= 768) return 2;
+    return 1;
+  };
+
+  const getInitialContainerWidth = () => {
+    if (typeof window === 'undefined') return 1200;
+    const padding = window.innerWidth >= 768 ? 160 : 48;
+    return Math.max(280, window.innerWidth - padding);
+  };
+
+  const [visibleCount, setVisibleCount] = useState(getInitialVisibleCount);
+  const [containerWidth, setContainerWidth] = useState(getInitialContainerWidth);
   const containerRef = useRef(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
-    const handleResize = () => {
-      const rect = containerRef.current.getBoundingClientRect();
-      setContainerWidth(rect.width);
+    
+    const handleResize = (entries) => {
+      const entry = entries[0];
+      if (entry) {
+        setContainerWidth(entry.contentRect.width);
+      }
       
-      // Determine visible count based on window size
       if (window.innerWidth >= 1024) {
         setVisibleCount(3);
       } else if (window.innerWidth >= 768) {
@@ -41,9 +56,15 @@ export const Testimonials = ({ testimonials = [] }) => {
       }
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    const observer = new ResizeObserver(handleResize);
+    observer.observe(containerRef.current);
+
+    const rect = containerRef.current.getBoundingClientRect();
+    setContainerWidth(rect.width);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   // 4. Slide state (starts at index N, which is the middle copy)

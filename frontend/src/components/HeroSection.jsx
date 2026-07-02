@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const HeroSection = ({ onOpenLeadModal }) => {
+export const HeroSection = React.memo(({ onOpenLeadModal }) => {
   const handleScrollToWork = (e) => {
     e.preventDefault();
     const element = document.getElementById('work');
@@ -40,9 +40,8 @@ export const HeroSection = ({ onOpenLeadModal }) => {
           </div>
         </div>
       </div>
-
     </section>
   );
-};
+});
 
 export default HeroSection;

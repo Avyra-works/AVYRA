@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FiMail, FiMapPin, FiChevronDown } from 'react-icons/fi';
 import { submitContactInquiry } from '../services/api';
 
-export const ContactSection = () => {
+export const ContactSection = React.memo(() => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -391,6 +391,6 @@ export const ContactSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default ContactSection;

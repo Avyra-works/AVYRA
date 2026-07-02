@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MeetDeveloperSection = () => {
+export const MeetDeveloperSection = React.memo(() => {
   const pillars = [
     {
       title: "Research & Strategy",
@@ -117,6 +117,6 @@ export const MeetDeveloperSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default MeetDeveloperSection;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ProcessSection = () => {
+export const ProcessSection = React.memo(() => {
   const steps = [
     {
       number: "01",
@@ -56,6 +56,6 @@ export const ProcessSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default ProcessSection;

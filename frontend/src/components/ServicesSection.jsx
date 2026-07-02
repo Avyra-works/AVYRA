@@ -11,7 +11,7 @@ import {
   FiCheck 
 } from 'react-icons/fi';
 
-export const ServicesSection = () => {
+export const ServicesSection = React.memo(() => {
   const mainServices = [
     {
       icon: <FiGlobe size={32} className="text-primary group-hover:text-accent-gold transition-colors duration-300" />,
@@ -251,6 +251,6 @@ export const ServicesSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default ServicesSection;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const CTASection = ({ onOpenLeadModal }) => {
+export const CTASection = React.memo(({ onOpenLeadModal }) => {
   return (
     <section className="py-64 bg-background relative overflow-hidden transition-colors duration-300">
       <div className="max-w-container-max-width mx-auto px-6 md:px-margin-desktop text-center relative z-10 space-y-12">
@@ -25,6 +25,6 @@ export const CTASection = ({ onOpenLeadModal }) => {
       </div>
     </section>
   );
-};
+});
 
 export default CTASection;

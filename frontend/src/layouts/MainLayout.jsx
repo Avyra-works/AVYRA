@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import LeadModal from '../components/LeadModal';
@@ -6,13 +6,13 @@ import LeadModal from '../components/LeadModal';
 export const MainLayout = ({ children }) => {
   const [isLeadModalOpen, setIsLeadModalOpen] = useState(false);
 
-  const openLeadModal = () => {
+  const openLeadModal = useCallback(() => {
     setIsLeadModalOpen(true);
-  };
+  }, []);
 
-  const closeLeadModal = () => {
+  const closeLeadModal = useCallback(() => {
     setIsLeadModalOpen(false);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-on-background selection:bg-accent-gold/20 flex flex-col">

@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-export const TrustSection = () => {
+export const TrustSection = React.memo(() => {
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -176,6 +176,6 @@ export const TrustSection = () => {
       </div>
     </section>
   );
-};
+});
 
 export default TrustSection;
