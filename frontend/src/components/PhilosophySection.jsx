@@ -45,9 +45,9 @@ export const PhilosophySection = () => {
                   {point.number}
                 </span>
                 <div className="space-y-3">
-                  <h4 className="font-display text-xl font-bold text-on-tertiary group-hover:text-accent-gold transition-colors duration-300">
+                  <h3 className="font-display text-xl font-bold text-on-tertiary group-hover:text-accent-gold transition-colors duration-300">
                     {point.title}
-                  </h4>
+                  </h3>
                   <p className="text-on-primary-container font-body text-sm leading-relaxed max-w-lg">
                     {point.description}
                   </p>

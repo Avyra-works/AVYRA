@@ -184,13 +184,13 @@ export const ProjectDetail = () => {
               <div className="grid grid-cols-2 gap-6 py-6 border-y border-outline-variant/30 font-body text-xs">
                 {project.client && (
                   <div>
-                    <h3 className="uppercase tracking-widest text-secondary font-bold mb-1">Client</h3>
+                    <h2 className="uppercase tracking-widest text-secondary font-bold mb-1">Client</h2>
                     <p className="text-primary font-semibold">{project.client}</p>
                   </div>
                 )}
                 {project.year && (
                   <div>
-                    <h3 className="uppercase tracking-widest text-secondary font-bold mb-1">Year</h3>
+                    <h2 className="uppercase tracking-widest text-secondary font-bold mb-1">Year</h2>
                     <p className="text-primary font-semibold">{project.year}</p>
                   </div>
                 )}
@@ -211,9 +211,9 @@ export const ProjectDetail = () => {
               {/* Key Highlights / Technology Tags */}
               {project.technologies && project.technologies.length > 0 && (
                 <div className="space-y-3 pt-2">
-                  <h4 className="font-body text-[10px] uppercase tracking-widest text-secondary font-bold">
+                  <h3 className="font-body text-[10px] uppercase tracking-widest text-secondary font-bold">
                     Key Highlights & Technologies
-                  </h4>
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech, idx) => (
                       <span 

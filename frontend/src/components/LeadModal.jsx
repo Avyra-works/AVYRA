@@ -109,9 +109,9 @@ export const LeadModal = ({ isOpen, onClose }) => {
           <FiX size={20} />
         </button>
 
-        <h3 className="font-display text-xl font-bold uppercase tracking-wide text-primary mb-2">
+        <h2 className="font-display text-xl font-bold uppercase tracking-wide text-primary mb-2">
           Start Your Project
-        </h3>
+        </h2>
         <p className="font-body text-xs text-secondary mb-6">
           Leave your details below and our principal architect will connect with you within 24 hours.
         </p>

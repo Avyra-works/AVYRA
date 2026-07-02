@@ -190,9 +190,9 @@ export const ServicesSection = () => {
             <span className="font-body text-xs font-bold uppercase tracking-widest text-accent-gold block">
               The Avyra Advantage
             </span>
-            <h3 className="font-display text-2xl md:text-4xl font-bold text-primary">
+            <h2 className="font-display text-2xl md:text-4xl font-bold text-primary">
               Why Clients Choose Avyra
-            </h3>
+            </h2>
             <p className="font-body text-sm text-secondary max-w-xl">
               We focus on delivering measurable business outcomes rather than just technical implementations.
             </p>
@@ -222,9 +222,9 @@ export const ServicesSection = () => {
               <span className="font-body text-xs font-bold uppercase tracking-widest text-accent-gold block">
                 Future Capabilities
               </span>
-              <h3 className="font-display text-2xl md:text-3xl font-bold text-primary">
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-primary">
                 Expanding Our Services
-              </h3>
+              </h2>
             </div>
             <p className="font-body text-xs md:text-sm text-secondary max-w-md leading-relaxed">
               We are continuously evolving our technical capabilities to meet next-generation digital demand.
