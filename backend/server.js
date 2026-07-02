@@ -13,6 +13,20 @@ const PORT = process.env.PORT || 5000;
 // Connect to MongoDB
 connectDB();
 
+// Security Headers Middleware
+app.use((req, res, next) => {
+  res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://*.sanity.io https://*.api.sanity.io https://*.apicdn.sanity.io; frame-ancestors 'none'; upgrade-insecure-requests;"
+  );
+  res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+  res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
+  res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  res.setHeader("X-Content-Type-Options", "nosniff");
+  next();
+});
+
 
 const allowedOrigins = [
   "http://localhost:5173",
