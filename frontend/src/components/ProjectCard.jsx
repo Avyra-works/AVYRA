@@ -1,5 +1,6 @@
 import React from 'react';
 import { FiArrowRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 export const ProjectCard = ({ project, isMobile, index }) => {
   const desktopImage = project.desktopImage || project.image;
@@ -14,7 +15,10 @@ export const ProjectCard = ({ project, isMobile, index }) => {
     return (
       <div className="w-full flex flex-col items-stretch project-reveal">
         {/* Project Screenshot */}
-        <div className="w-full shadow-md rounded border border-outline-variant/40 overflow-hidden bg-surface-container-high">
+        <Link 
+          to={`/project/${project.slug}`}
+          className="w-full block shadow-md rounded border border-outline-variant/40 overflow-hidden bg-surface-container-high"
+        >
           <img 
             src={desktopImage} 
             srcSet={project.coverImageAttrs?.srcSet || undefined}
@@ -23,7 +27,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
             loading="lazy"
             className="w-full h-auto block object-contain"
           />
-        </div>
+        </Link>
 
         {/* Spacing: 32px */}
         <div className="h-8"></div>
@@ -43,8 +47,10 @@ export const ProjectCard = ({ project, isMobile, index }) => {
         <div className="h-4"></div>
 
         {/* Project Title */}
-        <h3 className="font-display text-2xl font-bold text-primary leading-tight">
-          {project.title}
+        <h3 className="font-display text-2xl font-bold text-primary leading-tight hover:text-accent-gold transition-colors duration-300">
+          <Link to={`/project/${project.slug}`}>
+            {project.title}
+          </Link>
         </h3>
 
         {/* Spacing: 20px */}
@@ -113,7 +119,10 @@ export const ProjectCard = ({ project, isMobile, index }) => {
       {/* Image Showcase (Desktop & Mobile mockups overlapping) */}
       <div className={`col-span-12 lg:col-span-7 relative ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
         {/* Desktop Mockup container */}
-        <div className="relative aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group project-desktop-card cursor-pointer shadow-lg">
+        <Link 
+          to={`/project/${project.slug}`}
+          className="relative block aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group project-desktop-card cursor-pointer shadow-lg"
+        >
           <img 
             src={desktopImage} 
             srcSet={project.coverImageAttrs?.srcSet || undefined}
@@ -123,7 +132,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
             className="w-full h-full object-cover grayscale desktop-img transition-all duration-700 ease-out" 
           />
           <div className="absolute inset-0 bg-primary/5 opacity-0 hover-overlay transition-opacity duration-500"></div>
-        </div>
+        </Link>
         
         {/* Overlapping Mobile Mockup */}
         {mobileImage && (
@@ -157,8 +166,10 @@ export const ProjectCard = ({ project, isMobile, index }) => {
 
         {/* Title & Short Description */}
         <div className="space-y-4">
-          <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-primary leading-tight">
-            {project.title}
+          <h3 className="font-display text-2xl md:text-3xl lg:text-4xl font-bold text-primary leading-tight hover:text-accent-gold transition-colors duration-300">
+            <Link to={`/project/${project.slug}`}>
+              {project.title}
+            </Link>
           </h3>
           <p className="font-body text-base text-primary font-medium leading-relaxed italic border-l-2 border-accent-gold pl-4">
             {project.shortDescription}
