@@ -3,6 +3,7 @@ import { FiArrowRight } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 export const ProjectCard = ({ project, isMobile, index }) => {
+  const isFirstProject = index === 0;
   const desktopImage = project.desktopImage || project.image;
   const mobileImage = project.mobileImage || (project.gallery && project.gallery[0]) || (project.galleryImages && project.galleryImages[0]);
   const statusBadge = project.status;
@@ -24,7 +25,9 @@ export const ProjectCard = ({ project, isMobile, index }) => {
             srcSet={project.coverImageAttrs?.srcSet || undefined}
             sizes={project.coverImageAttrs?.sizes || undefined}
             alt={project.featuredImageAlt || project.altText || `${project.title} Screenshot`}
-            loading="lazy"
+            loading={isFirstProject ? "eager" : "lazy"}
+            fetchPriority={isFirstProject ? "high" : "low"}
+            decoding="async"
             className="w-full h-auto block object-contain"
           />
         </Link>
@@ -128,7 +131,9 @@ export const ProjectCard = ({ project, isMobile, index }) => {
             srcSet={project.coverImageAttrs?.srcSet || undefined}
             sizes={project.coverImageAttrs?.sizes || undefined}
             alt={project.featuredImageAlt || project.altText || `${project.title} Desktop`}
-            loading="lazy"
+            loading={isFirstProject ? "eager" : "lazy"}
+            fetchPriority={isFirstProject ? "high" : "low"}
+            decoding="async"
             className="w-full h-full object-cover grayscale desktop-img transition-all duration-700 ease-out" 
           />
           <div className="absolute inset-0 bg-primary/5 opacity-0 hover-overlay transition-opacity duration-500"></div>
@@ -145,6 +150,7 @@ export const ProjectCard = ({ project, isMobile, index }) => {
               sizes={project.mobileImageAttrs?.sizes || undefined}
               alt={project.featuredImageAlt ? `${project.featuredImageAlt} Mobile` : `${project.title} Mobile`}
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover grayscale mobile-img-hover transition-all duration-500" 
             />
           </div>

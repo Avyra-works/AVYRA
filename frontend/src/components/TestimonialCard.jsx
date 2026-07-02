@@ -48,6 +48,7 @@ export const TestimonialCard = ({ testimonial }) => {
               src={testimonial.image} 
               alt={testimonial.name} 
               loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 ease-out"
             />
           </div>

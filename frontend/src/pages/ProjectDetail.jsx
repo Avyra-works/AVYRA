@@ -283,8 +283,12 @@ export const ProjectDetail = () => {
                 <div className="relative aspect-[16/10] bg-surface-container-high overflow-hidden border border-outline-variant group shadow-lg">
                   <img 
                     src={project.desktopImage} 
-                    alt={`${project.title} Desktop Screenshot`}
+                    srcSet={project.coverImageAttrs?.srcSet || undefined}
+                    sizes={project.coverImageAttrs?.sizes || undefined}
+                    alt={project.featuredImageAlt || project.altText || `${project.title} Desktop Screenshot`}
                     loading="eager"
+                    fetchPriority="high"
+                    decoding="async"
                     className="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-[1.015] transition-all duration-700 ease-out" 
                   />
                 </div>
@@ -296,8 +300,11 @@ export const ProjectDetail = () => {
                   <div className="w-[200px] md:w-[260px] aspect-[9/19] bg-surface-container-high overflow-hidden border border-outline-variant shadow-2xl">
                     <img 
                       src={project.mobileImage} 
-                      alt={`${project.title} Mobile Screenshot`}
+                      srcSet={project.mobileImageAttrs?.srcSet || undefined}
+                      sizes={project.mobileImageAttrs?.sizes || undefined}
+                      alt={project.featuredImageAlt ? `${project.featuredImageAlt} Mobile` : `${project.title} Mobile Screenshot`}
                       loading="lazy"
+                      decoding="async"
                       className="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-105 transition-all duration-500 ease-out" 
                     />
                   </div>
@@ -316,6 +323,7 @@ export const ProjectDetail = () => {
                         src={imgUrl} 
                         alt={`${project.title} Gallery Screen ${gIdx + 1}`}
                         loading="lazy"
+                        decoding="async"
                         className="w-full h-full object-cover grayscale hover:grayscale-0 hover:scale-[1.015] transition-all duration-500 ease-out" 
                       />
                     </div>

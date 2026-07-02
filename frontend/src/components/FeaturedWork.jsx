@@ -113,11 +113,12 @@ export const FeaturedWork = ({ projects = [] }) => {
 
         {/* Dedicated Mobile Layout (< 768px) */}
         <div className="block md:hidden space-y-[64px]">
-          {featuredProjects.map((project) => (
+          {featuredProjects.map((project, index) => (
             <ProjectCard 
               key={project.id} 
               project={project} 
               isMobile={true} 
+              index={index}
             />
           ))}
         </div>
